@@ -1,20 +1,84 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import * as React from "react";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Header from "./components/layouts/Header";
+import Menu from "./components/layouts/Menu";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import LoginPage from "./components/pages/LoginPage";
 import RegisterPage from "./components/pages/RegisterPage";
 import StockPage from "./components/pages/StockPage";
 
-export default function App() {
+const drawerWidth = 240;
+
+const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
+  open?: boolean;
+}>(({ theme, open }) => ({
+  flexGrow: 1,
+  padding: theme.spacing(3),
+  transition: theme.transitions.create("margin", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  marginLeft: `-${drawerWidth}px`,
+  ...(open && {
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginLeft: 0,
+  }),
+}));
+
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: "flex-end",
+}));
+
+export default function PersistentDrawerLeft() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <div>
-      <Router>
-        <div>Header</div>
-        <div>Menu</div>
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/stock" element={<StockPage />} />
-        </Routes>
-      </Router>
-    </div>
+    <Router>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <Header
+          open={open}
+          handleDrawerOpen={handleDrawerOpen}
+          drawerWidth={drawerWidth}
+        />
+        <Menu
+          open={open}
+          handleDrawerClose={handleDrawerClose}
+          drawerWidth={drawerWidth}
+        />
+        <Main open={open}>
+          <DrawerHeader />
+          <Routes>
+            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/stock" element={<StockPage />} />
+          </Routes>
+        </Main>
+      </Box>
+    </Router>
   );
 }

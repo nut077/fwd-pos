@@ -1,5 +1,8 @@
-link zoom<br>
+link zoom<br/~~~~~~~~>
 https://us02web.zoom.us/j/85994341867?pwd=WDBQYzZqbWtrK0J6Q1licTZIMWYzQT09
+<br/><br/>
+repository<br/>
+https://github.com/codemobiles/reactjs_fwd/tree/master/fwd-pos
 
 npx create-react-app fwd-pos --template typescript
 yarn start
@@ -23,4 +26,6 @@ npx crcf -f  --notest --typescript StockCard Payment
 
 
 # all frontend dependency
-yarn add axios chart.js react-chartjs-2 react-moment react-number-format redux react-redux formik redux-logger redux-thunk url-join clsx @material-ui/lab  jsonwebtoken @types/jsonwebtoken material-table formik-material-ui @types/redux-logger react-router-dom@5.2.0 @types/react-router-dom @react-hook/debounce  @types/moment  @mui/x-data-grid@next
+yarn add axios chart.js react-chartjs-2 react-moment react-number-format redux react-redux formik redux-logger redux-thunk url-join clsx @material-ui/lab  jsonwebtoken @types/jsonwebtoken material-table formik-material-ui @types/redux-logger react-router-dom@5.2.0 @types/react-router-dom @react-hook/debounce  @types/moment  @mui/x-data-grid@next  <br/>
+yarn add @mui/material @emotion/react @emotion/styled @mui/icons-material
+
