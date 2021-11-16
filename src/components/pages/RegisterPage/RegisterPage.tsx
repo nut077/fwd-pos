@@ -15,7 +15,7 @@ const classes: SxProps = {
 };
 
 export default (props: any) => {
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const showForm = ({
     values,
@@ -63,7 +63,7 @@ export default (props: any) => {
         </Button>
         <Button
           sx={classes.canelBtn}
-          onClick={() => props.history.goBack()}
+          onClick={() => navigate("/login")}
           type="button"
           fullWidth
           variant="outlined"
