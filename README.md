@@ -1,3 +1,6 @@
+link zoom<br>
+https://us02web.zoom.us/j/85994341867?pwd=WDBQYzZqbWtrK0J6Q1licTZIMWYzQT09
+
 npx create-react-app fwd-pos --template typescript
 yarn start
 
