@@ -122,7 +122,7 @@ export default (props: any) => {
             initialValues={{ username: "", password: "" }}
             onSubmit={async (values, { setSubmitting }) => {
               const res = await axios.post(
-                "http://localhost:8081/api/v2/register",
+                "http://localhost:8082/api/v2/register",
                 values
               );
               alert(JSON.stringify(res.data));

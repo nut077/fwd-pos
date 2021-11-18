@@ -20,7 +20,7 @@
 					"raw": "{\"username\": \"lek\", \"password\": \"1234\"}"
 				},
 				"url": {
-					"raw": "localhost:8081/api/v2/register",
+					"raw": "localhost:8082/api/v2/register",
 					"host": [
 						"localhost"
 					],
@@ -49,7 +49,7 @@
 					"raw": "{\"username\": \"admin\", \"password\": \"1234\"}"
 				},
 				"url": {
-					"raw": "localhost:8081/api/v2/login",
+					"raw": "localhost:8082/api/v2/login",
 					"host": [
 						"localhost"
 					],
@@ -78,7 +78,7 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8081/api/v2/product?token=1234",
+					"raw": "localhost:8082/api/v2/product?token=1234",
 					"host": [
 						"localhost"
 					],
@@ -109,7 +109,7 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8081/api/v2/product/id/17",
+					"raw": "localhost:8082/api/v2/product/id/17",
 					"host": [
 						"localhost"
 					],
@@ -136,7 +136,7 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8081/api/v2/product/name/relay",
+					"raw": "localhost:8082/api/v2/product/name/relay",
 					"host": [
 						"localhost"
 					],
@@ -163,7 +163,7 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8081/api/v2/transaction",
+					"raw": "localhost:8082/api/v2/transaction",
 					"host": [
 						"localhost"
 					],
@@ -188,7 +188,7 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8081/api/v2/transaction",
+					"raw": "localhost:8082/api/v2/transaction",
 					"host": [
 						"localhost"
 					],
@@ -213,7 +213,7 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8081/api/v2/transaction/id/119",
+					"raw": "localhost:8082/api/v2/transaction/id/119",
 					"host": [
 						"localhost"
 					],
@@ -244,7 +244,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8081/api/v2/product/id/113",
+					"raw": "http://localhost:8082/api/v2/product/id/113",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -302,7 +302,7 @@
 					]
 				},
 				"url": {
-					"raw": "localhost:8081/api/v2/product",
+					"raw": "localhost:8082/api/v2/product",
 					"host": [
 						"localhost"
 					],
@@ -352,7 +352,7 @@
 					]
 				},
 				"url": {
-					"raw": "localhost:8081/api/v2/product",
+					"raw": "localhost:8082/api/v2/product",
 					"host": [
 						"localhost"
 					],

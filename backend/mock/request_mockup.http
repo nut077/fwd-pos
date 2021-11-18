@@ -1,8 +1,8 @@
 ### Login
-GET http://localhost:8081/api/v2/login HTTP/1.1
+GET http://localhost:8082/api/v2/login HTTP/1.1
 
 ### Register JSON
-POST http://localhost:8081/api/v2/register HTTP/1.1
+POST http://localhost:8082/api/v2/register HTTP/1.1
 Content-Type: application/json
 
 {
@@ -11,7 +11,7 @@ Content-Type: application/json
 }
 
 ### Register URLEncoded
-POST http://localhost:8081/api/v2/register HTTP/1.1
+POST http://localhost:8082/api/v2/register HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
 username='admin'&password='1234'

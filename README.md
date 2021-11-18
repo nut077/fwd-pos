@@ -4,8 +4,12 @@ https://us02web.zoom.us/j/85994341867?pwd=WDBQYzZqbWtrK0J6Q1licTZIMWYzQT09
 repository<br/>
 https://github.com/codemobiles/reactjs_fwd/tree/master/fwd-pos
 
-npx create-react-app fwd-pos --template typescript
-yarn start
+npx create-react-app fwd-pos --template typescript<br/>
+yarn start<br/><br/>
+
+cd backend<br/>
+npx nodemon server.js<br/>
+
 
 --
 tsrfc
