@@ -48,8 +48,20 @@ db.users.find()<br/>
 db.users.find().pretty<br/>
 db.users.find({username: "admin2"})<br/>
 drop database: db.dropDatabase()<br/>
+drop collections: db.users.drop()<br/>
+current database: db.getName()<br/>
 
 <br/><br/>
 add library
 yarn add express fs-extra formidable cors bcryptjs rand-token jsonwebtoken mongoose mongoose-sequence onesignal-node
+<br/>
+<br/>
+mongo restore<br/>
+
+download<br/>
+https://www.mongodb.com/try/download/tools<br/>
+select MongoDB Database Tools<br/>
+download zip and copy in all folder bin to c program file mongo
+mongodump -d demopos -o .<br/>
+mongorestore -d demopos D:\react\fwd-pos\backend\dummy_db_cmpos
 

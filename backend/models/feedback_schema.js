@@ -1,10 +1,8 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const schema = mongoose.Schema({
+  title: String,
+  subTitle: String,
+  created: { type: Date, default: Date.now },
+});
 
-const feedbackSchema = mongoose.Schema({
-    username: {type: String, required: true}, 
-    message: String,
-    category: {type: String, default: "general"},
-    crated: {type: Date, default: Date.now()}
-})
-
-module.exports = mongoose.model('feedbacks', feedbackSchema);
+module.exports = mongoose.model("feedbacks", schema);

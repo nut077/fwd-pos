@@ -25,7 +25,7 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0g
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="name";
 
-VueJS 
+Java 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="stock";
 
@@ -38,7 +38,7 @@ Content-Disposition: form-data; name="price";
 Content-Disposition: form-data; name="image"; filename="test.jpg"
 Content-Type: image/png
 
-< ./subway.jpeg
+< ./fish.jpg
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 

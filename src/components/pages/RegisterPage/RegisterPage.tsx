@@ -7,6 +7,7 @@ import { Box, SxProps } from "@mui/system";
 import { Formik, FormikProps } from "formik";
 import { useNavigate } from "react-router-dom";
 import { FormikValues } from "formik/dist/types";
+import axios from "axios";
 
 const classes: SxProps = {
   root: { display: "flex", justifyContent: "center", alignItems: "center" },
@@ -119,11 +120,12 @@ export default (props: any) => {
           </Typography>
           <Formik
             initialValues={{ username: "", password: "" }}
-            onSubmit={(value, { setSubmitting }) => {
-              alert(JSON.stringify(value));
-              setTimeout(() => {
-                setSubmitting(false);
-              }, 3000);
+            onSubmit={async (values, { setSubmitting }) => {
+              const res = await axios.post(
+                "http://localhost:8081/api/v2/register",
+                values
+              );
+              alert(JSON.stringify(res.data));
             }}
           >
             {(props: FormikProps<FormikValues>) => showForm(props)}
