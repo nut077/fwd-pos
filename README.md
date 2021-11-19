@@ -69,3 +69,6 @@ download zip and copy in all folder bin to c program file mongo
 mongodump -d demopos -o .<br/>
 mongorestore -d demopos D:\react\fwd-pos\backend\dummy_db_cmpos
 
+#generate key
+http://travistidwell.com/jsencrypt/demo/
+

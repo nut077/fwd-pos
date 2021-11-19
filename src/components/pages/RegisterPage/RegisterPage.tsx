@@ -7,7 +7,9 @@ import { Box, SxProps } from "@mui/system";
 import { Formik, FormikProps } from "formik";
 import { useNavigate } from "react-router-dom";
 import { FormikValues } from "formik/dist/types";
-import axios from "axios";
+import * as registerActions from "../../../actions/register.acion";
+import { useDispatch, useSelector } from "react-redux";
+import { Alert } from "@mui/material";
 
 const classes: SxProps = {
   root: { display: "flex", justifyContent: "center", alignItems: "center" },
@@ -17,6 +19,8 @@ const classes: SxProps = {
 
 export default (props: any) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const registerReducer = useSelector((state: any) => state.registerReducer);
 
   const showForm = ({
     values,
@@ -58,7 +62,7 @@ export default (props: any) => {
           fullWidth
           variant="contained"
           color="primary"
-          disabled={isSubmitting}
+          disabled={registerReducer.isFetching}
         >
           Create
         </Button>
@@ -71,6 +75,11 @@ export default (props: any) => {
         >
           Cancel
         </Button>
+        {registerReducer.isError && (
+          <Alert severity="error" sx={{ marginTop: 2 }}>
+            Error, register
+          </Alert>
+        )}
       </form>
     );
   };
@@ -120,12 +129,8 @@ export default (props: any) => {
           </Typography>
           <Formik
             initialValues={{ username: "", password: "" }}
-            onSubmit={async (values, { setSubmitting }) => {
-              const res = await axios.post(
-                "http://localhost:8082/api/v2/register",
-                values
-              );
-              alert(JSON.stringify(res.data));
+            onSubmit={async (values, {}) => {
+              dispatch(registerActions.handleRegister(values));
             }}
           >
             {(props: FormikProps<FormikValues>) => showForm(props)}

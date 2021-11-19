@@ -3,14 +3,24 @@ const router = express.Router();
 const Users = require("./models/user_schema");
 const Feedbacks = require("./models/feedback_schema");
 const bcrypt = require("bcryptjs");
+const jwt = require("./jwt");
 
 router.post("/login", async (req, res) => {
   try {
     let doc = await Users.findOne({ username: req.body.username });
     if (doc) {
-      const isValid = await bcrypt.compare(req.body.password, doc.password);
-      if (isValid) {
-        res.json({ result: "ok", message: doc });
+      const isValidPassword = await bcrypt.compare(
+        req.body.password,
+        doc.password
+      );
+      if (isValidPassword) {
+        const payload = {
+          id: doc._id.toString(),
+          level: doc.level,
+          username: doc.username,
+        };
+        const token = jwt.sign(payload, "1000000000");
+        res.json({ result: "ok", message: "Login successfully", token });
       } else {
         res.json({ result: "error", message: "Invalid password" });
       }

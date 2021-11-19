@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 var publicKEY = fs.readFileSync(path.join(__dirname + "/public.key"), "utf8");
 var privateKEY = fs.readFileSync(path.join(__dirname + "/private.key"), "utf8");
 
-var i = "CodeMobiles Ltd"; // Issuer (Software organization who issues the token)
+var i = "Fwd"; // Issuer (Software organization who issues the token)
 var s = "chaiyasit.t@gmail.com"; // Subject (intended user of the token)
 var a = "http://codemobiles.com"; // Audience (Domain within which this token will live and function)
 
