@@ -1,4 +1,4 @@
-link zoom<br/~~~~~~~~>
+link zoom<br/>
 https://us02web.zoom.us/j/85994341867?pwd=WDBQYzZqbWtrK0J6Q1licTZIMWYzQT09
 <br/><br/>
 repository<br/>
@@ -71,4 +71,17 @@ mongorestore -d demopos D:\react\fwd-pos\backend\dummy_db_cmpos
 
 #generate key
 http://travistidwell.com/jsencrypt/demo/
+
+
+# extension
+https://medium.com/@Jeerawat_Dev/%E0%B9%81%E0%B8%99%E0%B8%B0%E0%B8%99%E0%B8%B3-extension-vscode-visual-studio-code-%E0%B8%AA%E0%B8%B3%E0%B8%AB%E0%B8%A3%E0%B8%B1%E0%B8%9A-developer-react-angular7-dc322d7e8227<br/>
+<br/>
+Auto Close Tag<br/>
+Auto Import<br/>
+Auto Rename Tag<br/>
+Bracket Pair Colorizer<br/>
+Code Spell Checker<br/>
+Color Highlight<br/>
+GitLens<br/>
+Prettier<br/>
 
