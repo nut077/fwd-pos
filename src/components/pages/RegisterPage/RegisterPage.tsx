@@ -18,7 +18,7 @@ const classes: SxProps = {
   canelBtn: { marginTop: 2 },
 };
 
-export default (props: any) => {
+const RegisterPage = (props: any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const registerReducer = useSelector(
@@ -143,3 +143,5 @@ export default (props: any) => {
     </Box>
   );
 };
+
+export default RegisterPage;

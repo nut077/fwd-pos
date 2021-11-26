@@ -17,7 +17,7 @@ import { RootReducers } from "../../../reducers";
 import { SxProps } from "@mui/system";
 import * as loginActions from "./../../../actions/login.action";
 
-export default (props: any) => {
+const LoginPage = (props: any) => {
   const dispatch = useDispatch();
   const loginReducer = useSelector((state: RootReducers) => state.loginReducer);
   const navigate = useNavigate();
@@ -118,3 +118,5 @@ export default (props: any) => {
     </Box>
   );
 };
+
+export default LoginPage;
