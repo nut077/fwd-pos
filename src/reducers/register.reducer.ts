@@ -5,9 +5,9 @@ import {
 } from "../constants";
 
 export interface RegisterState {
-  isFetching: boolean,
-  isError: boolean,
-  result: any
+  isFetching: boolean;
+  isError: boolean;
+  result: any;
 }
 
 const initialState: RegisterState = {
@@ -16,7 +16,10 @@ const initialState: RegisterState = {
   result: null,
 };
 
-export default (state = initialState, { type, payload }: any): RegisterState => {
+const registerReducer = (
+  state = initialState,
+  { type, payload }: any
+): RegisterState => {
   switch (type) {
     case REGISTER_FETCHING:
       return { ...state, isFetching: true, isError: false, result: null };
@@ -28,3 +31,5 @@ export default (state = initialState, { type, payload }: any): RegisterState => 
       return state;
   }
 };
+
+export default registerReducer;

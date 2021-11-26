@@ -17,7 +17,10 @@ const initialState: LoginState = {
   result: null,
 };
 
-export default (state = initialState, { type, payload }: any): LoginState => {
+const loginReducer = (
+  state = initialState,
+  { type, payload }: any
+): LoginState => {
   switch (type) {
     case LOGIN_FETCHING:
       return { ...state, isFetching: true, isError: false, result: null };
@@ -31,3 +34,5 @@ export default (state = initialState, { type, payload }: any): LoginState => {
       return state;
   }
 };
+
+export default loginReducer;
