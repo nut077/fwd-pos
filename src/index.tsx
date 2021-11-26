@@ -9,13 +9,17 @@ import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import reducers from "./reducers";
 import logger from "redux-logger";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 let middlewares: Middleware[] = [thunk];
 
 if (process.env.REACT_APP_IS_PRODUCTION !== "1") {
   middlewares.push(logger);
 }
-export const store = createStore(reducers, applyMiddleware(...middlewares));
+export const store = createStore(
+  reducers,
+  composeWithDevTools(applyMiddleware(...middlewares))
+);
 
 ReactDOM.render(
   <React.StrictMode>

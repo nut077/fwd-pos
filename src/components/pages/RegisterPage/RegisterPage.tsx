@@ -10,6 +10,7 @@ import { FormikValues } from "formik/dist/types";
 import * as registerActions from "../../../actions/register.acion";
 import { useDispatch, useSelector } from "react-redux";
 import { Alert } from "@mui/material";
+import { RootReducers } from "../../../reducers";
 
 const classes: SxProps = {
   root: { display: "flex", justifyContent: "center", alignItems: "center" },
@@ -20,7 +21,9 @@ const classes: SxProps = {
 export default (props: any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const registerReducer = useSelector((state: any) => state.registerReducer);
+  const registerReducer = useSelector(
+    (state: RootReducers) => state.registerReducer
+  );
 
   const showForm = ({
     values,

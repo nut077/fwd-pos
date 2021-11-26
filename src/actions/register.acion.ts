@@ -2,8 +2,9 @@ import {
   REGISTER_FETCHING,
   REGISTER_SUCCESS,
   REGISTER_FAILED,
+  server
 } from "../constants";
-import axios from "axios";
+import { httpClient } from "../utils/HttpClient";
 
 export const setRegisterFetchingToState = () => ({
   type: REGISTER_FETCHING,
@@ -35,9 +36,10 @@ export const handleRegister = (account: any) => {
 };
 
 const doHandleRegister = async (account: any) => {
-  const result = await axios.post(
+  /* const result = await axios.post(
     "http://localhost:8082/api/v2/register",
     account
-  );
+  ); */
+  const result = await httpClient.post(server.REGISTER_URL, account)
   return result.data;
 };
