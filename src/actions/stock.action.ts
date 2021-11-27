@@ -1,46 +1,105 @@
 import {
+  server,
   STOCK_CLEAR,
   STOCK_FAILED,
   STOCK_FETCHING,
   STOCK_SUCCESS,
-  server
 } from "../constants";
+//import Product from "../models/product.model";
 import { httpClient } from "../utils/HttpClient";
 
-const setStockSuccessToState = (payload: any) => ({
+export const setStateStockToSuccess = (payload: any) => ({
   type: STOCK_SUCCESS,
-  payload
-})
+  payload,
+});
 
-const setStockFetchingToState = () => ({
-  type: STOCK_FETCHING
-})
+const setStateStockToFetching = () => ({
+  type: STOCK_FETCHING,
+});
 
-const setStockFailedToState = () => ({
-  type: STOCK_FAILED
-})
+const setStateStockToFailed = () => ({
+  type: STOCK_FAILED,
+});
 
-const setStockClearToState = () => ({
-  type: STOCK_CLEAR
-})
+const setStateStockToClear = () => ({
+  type: STOCK_CLEAR,
+});
 
-const doGetProducts = async () => {
-  try {
-    const result = await httpClient.get(server.PRODUCT_URL);
-    return result.data.result;
-  } catch (err) {
-    return [];
-  }
-}
+export const clearProduct = () => {
+  return (dispatch: any) => {
+    dispatch(setStateStockToClear());
+  };
+};
 
 export const getProducts = () => {
   return async (dispatch: any) => {
     try {
-      dispatch(setStockFetchingToState());
+      dispatch(setStateStockToFetching());
       const result = await doGetProducts();
-      dispatch(setStockSuccessToState(result));
-    } catch (err) {
-      dispatch(setStockFailedToState());
+      dispatch(setStateStockToSuccess(result.result));
+    } catch (error) {
+      dispatch(setStateStockToFailed());
     }
+  };
+};
+
+export const addProduct = (formData: any, navigate: any) => {
+  return async (dispatch: any) => {
+    await httpClient.post(server.PRODUCT_URL, formData);
+    navigate(-1);
+  };
+};
+
+export const updateProduct = (formData: any, navigate: any) => {
+  return async (dispatch: any) => {
+    await httpClient.put(server.PRODUCT_URL, formData);
+    navigate(-1);
+  };
+};
+
+export const getProductById = (id: any) => {
+  return async (dispatch: any) => {
+    try {
+      dispatch(setStateStockToFetching());
+      let result = await httpClient.get(`${server.PRODUCT_URL}/id/${id}`);
+      dispatch(setStateStockToSuccess(result.data));
+    } catch (error) {
+      alert(JSON.stringify(error));
+      dispatch(setStateStockToFailed());
+    }
+  };
+};
+
+export const deleteProduct = (id: any) => {
+  return async (dispatch: any) => {
+    dispatch(setStateStockToFetching());
+    await httpClient.delete(`${server.PRODUCT_URL}/id/${id}`);
+    const result = await doGetProducts();
+    dispatch(setStateStockToSuccess(result.result));
+  };
+};
+
+export const getProductByKeyword = (keyword: string) => {
+  return async (dispatch: any) => {
+    dispatch(setStateStockToFetching());
+
+    if (keyword !== null && keyword !== "") {
+      let result = await httpClient.get(
+        `${server.PRODUCT_URL}/name/${keyword}`
+      );
+      dispatch(setStateStockToSuccess(result.data));
+    } else {
+      const result = await doGetProducts();
+      dispatch(setStateStockToSuccess(result.result));
+    }
+  };
+};
+
+const doGetProducts = async () => {
+  try {
+    const result = await httpClient.get(server.PRODUCT_URL);
+    return result.data;
+  } catch (error) {
+    return [];
   }
-}
+};

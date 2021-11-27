@@ -8,7 +8,7 @@ const path = require("path");
 const jwt = require("./jwt");
 
 router.get("/product", jwt.verify, async (req, res) => {
-  const doc = await Products.find();
+  const doc = await Products.find().sort({ created: -1 }); // -1 mean desc
   res.json({ result: doc });
 });
 
@@ -24,6 +24,12 @@ router.post("/product", async (req, res) => {
   } catch (e) {
     res.json({ result: "nok", message: e });
   }
+});
+
+router.get("/product/name/:keyword", jwt.verify, async (req, res) => {
+  const query = { name: new RegExp("^.*" + req.params.keyword + ".*$", "i") };
+  const result = await Products.find(query);
+  res.json(result);
 });
 
 // Update Product

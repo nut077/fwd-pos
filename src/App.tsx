@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -20,28 +20,8 @@ import StockCreatePage from "./components/pages/StockCreatePage";
 import StockEditPage from "./components/pages/StockEditPage";
 import TransactionPage from "./components/pages/TransactionPage";
 import ReportPage from "./components/pages/ReportPage";
-import * as loginAction from './actions/login.action'
-
-const drawerWidth = 240;
-
-const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
-  open?: boolean;
-}>(({ theme, open }) => ({
-  flexGrow: 1,
-  padding: theme.spacing(3),
-  transition: theme.transitions.create("margin", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  marginLeft: `-${drawerWidth}px`,
-  ...(open && {
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  }),
-}));
+import * as loginAction from "./actions/login.action";
+import { Container } from "@mui/material";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -59,8 +39,8 @@ export default function App() {
 
   useEffect(() => {
     dispatch(loginAction.handleReLogin());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -77,7 +57,7 @@ export default function App() {
 
   function PrivateRoute({ children }: any) {
     const auth = loginReducer.result;
-    console.log('auth', auth)
+    console.log("auth", auth);
     return auth ? children : <Navigate to="/login" />;
   }
 
@@ -101,7 +81,7 @@ export default function App() {
           </>
         )}
 
-        <Main open={open}>
+        <Container>
           <DrawerHeader />
           <Routes>
             <Route path="*" element={<NotFound />} />
@@ -113,7 +93,7 @@ export default function App() {
             <Route path="/stock" element={<PrivateOutlet />}>
               <Route path="" element={<StockPage />} />
               <Route path="create" element={<StockCreatePage />} />
-              <Route path="edit:id" element={<StockEditPage />} />
+              <Route path="edit/:id" element={<StockEditPage />} />
             </Route>
             <Route
               path="/report"
@@ -132,7 +112,7 @@ export default function App() {
               }
             />
           </Routes>
-        </Main>
+        </Container>
       </Box>
     </Router>
   );
