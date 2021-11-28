@@ -13,7 +13,7 @@ Content-Type: application/json
 
 {
     "username": "aaa",
-    "password" : "111"
+    "password" : "aaa"
 }
 
 ### Comment

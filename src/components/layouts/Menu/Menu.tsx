@@ -99,18 +99,22 @@ const Menu: React.FC<MenuProps> = ({ handleDrawerClose, open }) => {
 
   const classes = {
     isActive: {
-      backgroundColor: "#e0f5fd",
+      backgroundColor: "#333",
       color: "#0080ff",
     },
   };
 
   const NavLinkMui = (props: any) => {
     const { forwardedRef, ...otherProps } = props;
+    debugger;
     return (
       <NavLink
         {...otherProps}
         ref={forwardedRef}
-        activeStyle={classes.isActive}
+        //activeStyle={classes.isActive}
+        className={(navData) =>
+          navData.isActive ? props.className + " active" : props.className
+        }
       />
     );
   };
@@ -121,7 +125,12 @@ const Menu: React.FC<MenuProps> = ({ handleDrawerClose, open }) => {
         <img
           height={50}
           width={150}
-          src={`${process.env.PUBLIC_URL}/images/codemobiles_logo.svg`}
+          alt="Product"
+          src={`${process.env.PUBLIC_URL}/images/${
+            theme.palette.mode == "dark"
+              ? "codemobiles_logo_dark.svg"
+              : "codemobiles_logo.svg"
+          } `}
         />
         <IconButton onClick={handleDrawerClose}>
           {theme.direction === "rtl" ? (
@@ -135,7 +144,8 @@ const Menu: React.FC<MenuProps> = ({ handleDrawerClose, open }) => {
       {open && (
         <img
           height={250}
-          src={`${process.env.PUBLIC_URL}/images/menu_banner.jpg`}
+          alt="Banner"
+          src={`${process.env.PUBLIC_URL}/images/menu_banner_dark.jpg`}
         />
       )}
       <Divider />

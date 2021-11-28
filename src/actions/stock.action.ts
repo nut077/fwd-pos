@@ -5,6 +5,7 @@ import {
   STOCK_FETCHING,
   STOCK_SUCCESS,
 } from "../constants";
+import Product from "../models/product.model";
 //import Product from "../models/product.model";
 import { httpClient } from "../utils/HttpClient";
 
@@ -36,7 +37,7 @@ export const getProducts = () => {
     try {
       dispatch(setStateStockToFetching());
       const result = await doGetProducts();
-      dispatch(setStateStockToSuccess(result.result));
+      dispatch(setStateStockToSuccess(result));
     } catch (error) {
       dispatch(setStateStockToFailed());
     }
@@ -75,7 +76,7 @@ export const deleteProduct = (id: any) => {
     dispatch(setStateStockToFetching());
     await httpClient.delete(`${server.PRODUCT_URL}/id/${id}`);
     const result = await doGetProducts();
-    dispatch(setStateStockToSuccess(result.result));
+    dispatch(setStateStockToSuccess(result));
   };
 };
 
@@ -90,14 +91,14 @@ export const getProductByKeyword = (keyword: string) => {
       dispatch(setStateStockToSuccess(result.data));
     } else {
       const result = await doGetProducts();
-      dispatch(setStateStockToSuccess(result.result));
+      dispatch(setStateStockToSuccess(result));
     }
   };
 };
 
 const doGetProducts = async () => {
   try {
-    const result = await httpClient.get(server.PRODUCT_URL);
+    const result = await httpClient.get<Product[]>(server.PRODUCT_URL);
     return result.data;
   } catch (error) {
     return [];

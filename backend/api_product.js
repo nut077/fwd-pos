@@ -9,7 +9,7 @@ const jwt = require("./jwt");
 
 router.get("/product", jwt.verify, async (req, res) => {
   const doc = await Products.find().sort({ created: -1 }); // -1 mean desc
-  res.json({ result: doc });
+  res.json(doc);
 });
 
 // Add Product

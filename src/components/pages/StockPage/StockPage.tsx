@@ -40,9 +40,10 @@ import { imageUrl } from "./../../../constants";
 import StockCard from "./../../fragments/StockCard/StockCard";
 import { useDebounce, useDebounceCallback } from "@react-hook/debounce";
 import { useNavigate } from "react-router-dom";
+import Product from "../../../models/product.model";
 //import Product from "./../../../models/product.model";
 
-const StockPage = (props: any) => {
+const StockPage = () => {
   const stockReducer = useSelector((state: RootReducers) => state.stockReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -253,7 +254,7 @@ const StockPage = (props: any) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {stockReducer.result.map((item: any) => (
+            {stockReducer.result.map((item: Product) => (
               <TableRow hover key={item.product_id} sx={{ padding: 0 }}>
                 {/* Id */}
                 <TableCell component="th" scope="row">

@@ -11,6 +11,7 @@ import {
   Navigate,
   Outlet,
 } from "react-router-dom";
+
 import LoginPage from "./components/pages/LoginPage";
 import RegisterPage from "./components/pages/RegisterPage";
 import StockPage from "./components/pages/StockPage";
@@ -20,6 +21,7 @@ import StockCreatePage from "./components/pages/StockCreatePage";
 import StockEditPage from "./components/pages/StockEditPage";
 import TransactionPage from "./components/pages/TransactionPage";
 import ReportPage from "./components/pages/ReportPage";
+import ShopPage from "./components/pages/ShopPage";
 import * as loginAction from "./actions/login.action";
 import { Container } from "@mui/material";
 
@@ -27,13 +29,15 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   padding: theme.spacing(0, 1),
+  paddingTop: 100,
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
   justifyContent: "flex-end",
 }));
 
-export default function App() {
+const App = () => {
   const [open, setOpen] = useState(false);
+  const [origin, setOrigin] = useState(null);
   const loginReducer = useSelector((state: RootReducers) => state.loginReducer);
   const dispatch = useDispatch();
 
@@ -55,15 +59,15 @@ export default function App() {
     return auth ? <Outlet /> : <Navigate to="/login" />;
   }
 
-  function PrivateRoute({ children }: any) {
+  function PrivateRoute({ children, path }: any) {
     const auth = loginReducer.result;
-    console.log("auth", auth);
+    setOrigin(path);
     return auth ? children : <Navigate to="/login" />;
   }
 
   function LoginRoute() {
     const auth = loginReducer.result;
-    return auth ? <Navigate to="/stock" /> : <Outlet />;
+    return auth ? <Navigate to={origin ? origin : "/stock"} /> : <Outlet />;
   }
 
   const NotFound = () => {
@@ -98,7 +102,7 @@ export default function App() {
             <Route
               path="/report"
               element={
-                <PrivateRoute>
+                <PrivateRoute path="/report">
                   <ReportPage />
                 </PrivateRoute>
               }
@@ -106,8 +110,16 @@ export default function App() {
             <Route
               path="/transaction"
               element={
-                <PrivateRoute>
+                <PrivateRoute path="/transaction">
                   <TransactionPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/shop"
+              element={
+                <PrivateRoute path="/shop">
+                  <ShopPage />
                 </PrivateRoute>
               }
             />
@@ -116,4 +128,6 @@ export default function App() {
       </Box>
     </Router>
   );
-}
+};
+
+export default App;

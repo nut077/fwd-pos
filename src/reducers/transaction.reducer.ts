@@ -3,11 +3,10 @@ import {
     TRANSACTION_FETCHING,
     TRANSACTION_SUCCESS,
 } from "../constants";
-//import { TransactionResponse } from "../models/transaction";
+import { TransactionResponse } from "../models/transaction";
 
 export interface TransactionState {
-    //result: TransactionResponse[];
-    result: any[];
+    result: TransactionResponse[];
     isFetching: boolean;
     isError: boolean;
 }
