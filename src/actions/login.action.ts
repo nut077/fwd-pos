@@ -29,8 +29,9 @@ export const handleLogin = (account: any, navigate: any) => {
     dispatch(setLoginFetchingToState());
     const result = await httpClient.post(server.LOGIN_URL, account);
     if (result.data.result === "ok") {
-      const { token } = result.data;
+      const { token, refreshToken } = result.data;
       localStorage.setItem(server.TOKEN_KEY, token);
+      localStorage.setItem(server.REFRESH_TOKEN_KEY, refreshToken);
       dispatch(setLoginSuccessToState(result.data));
       navigate("/stock");
     } else {

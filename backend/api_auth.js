@@ -4,6 +4,8 @@ const Users = require("./models/user_schema");
 const Feedbacks = require("./models/feedback_schema");
 const bcrypt = require("bcryptjs");
 const jwt = require("./jwt");
+var randtoken = require("rand-token");
+let refreshTokens = {};
 
 router.post("/login", async (req, res) => {
   try {
@@ -19,8 +21,15 @@ router.post("/login", async (req, res) => {
           level: doc.level,
           username: doc.username,
         };
-        const token = jwt.sign(payload, "1000000000");
-        res.json({ result: "ok", message: "Login successfully", token });
+        const token = jwt.sign(payload, "10000");
+        const refreshToken = randtoken.uid(256);
+        refreshTokens[refreshToken] = req.body.username;
+        res.json({
+          result: "ok",
+          message: "Login successfully",
+          token,
+          refreshToken,
+        });
       } else {
         res.json({ result: "error", message: "Invalid password" });
       }
@@ -48,6 +57,26 @@ router.post("/feedback", async (req, res) => {
     res.json({ result: "ok", message: doc });
   } catch (e) {
     res.json({ result: "error", message: e });
+  }
+});
+
+let count = 1;
+router.post("/refresh/token", function (req, res) {
+  const refreshToken = req.body.refreshToken;
+  console.log("Refresh Token : " + count++);
+
+  if (refreshToken in refreshTokens) {
+    const payload = {
+      username: refreshTokens[refreshToken],
+      level: "normal",
+    };
+    const token = jwt.sign(payload, "20000");
+    res.json({ jwt: token });
+  } else {
+    console.log("Not found");
+    return res
+      .status(403)
+      .json({ auth: false, message: "Invalid refresh token" });
   }
 });
 
